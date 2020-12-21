@@ -1,5 +1,6 @@
 using API.Data;
 using API.Data.Repositories;
+using API.Data.Seeds;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -35,6 +36,12 @@ namespace API
         {
             if (env.IsDevelopment())
             {
+                using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
+                         .CreateScope())
+                {
+                    serviceScope.ServiceProvider.SeedDatabase();
+                }
+
                 app.UseDeveloperExceptionPage();
             }
 
