@@ -26,6 +26,8 @@ namespace API
                 sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
 
             services.AddTransient<IDatabaseContext, DatabaseContext>();
+
+            services.AddControllers();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -39,10 +41,7 @@ namespace API
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllers();
             });
         }
     }
