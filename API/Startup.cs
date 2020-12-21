@@ -1,7 +1,7 @@
 using API.Data;
+using API.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,7 +25,8 @@ namespace API
             services.AddSingleton<IDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
 
-            services.AddTransient<IDatabaseContext, DatabaseContext>();
+            services.AddSingleton<IDatabaseContext, DatabaseContext>();
+            services.AddSingleton<ICategoryRepository, CategoryRepository>();
 
             services.AddControllers();
         }
