@@ -24,6 +24,8 @@ namespace API
                 Configuration.GetSection(nameof(DatabaseSettings)));
             services.AddSingleton<IDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
+
+            services.AddTransient<IDatabaseContext, DatabaseContext>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
