@@ -5,4 +5,8 @@
     <UserSecretsId>ae6d5ab5-78fc-409e-9f82-0fc1013c526e</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Bson" Version="2.11.5" />
+  </ItemGroup>
+
 </Project>
